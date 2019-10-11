@@ -1,0 +1,8 @@
+[deps]
+CBinding = "d43a6710-96b8-4a2d-833c-c424785e5374"
+CBindingGen = "308a6e0c-0495-45e1-b1ab-67fb455a0d77"
+CUDAdrv = "c5f51814-7f29-56b8-a69c-e4d8f6be1fde"
+CUDAnative = "be33ccc6-a3ff-5ff2-a52e-74243cff1e17"
+CuArrays = "3a865a2d-5b23-5a0f-bc46-62713ec82fae"
+ImageMagick = "6218d12a-5da1-5696-b52f-db25d2ecc6d1"
+Images = "916415d5-f1e6-5110-898d-aaa5f9f070e0"
