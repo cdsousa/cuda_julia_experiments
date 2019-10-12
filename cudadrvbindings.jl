@@ -1,4 +1,4 @@
-# import Pkg; Pkg.activate("."); Pkg.instantiate()
+import Pkg; Pkg.activate("."); Pkg.instantiate()
 
 using CBindingGen
 using CBindingGen.Clang
@@ -18,6 +18,7 @@ defs = [
     "CUresourceViewFormat",
     "CUDA_RESOURCE_VIEW_DESC",
     "CU_TRSF_",
+    "CUDA_ARRAY_DESCRIPTOR",
 ]
 
 ctx = ConverterContext() do decl
@@ -27,6 +28,12 @@ end
 
 parse_headers!(ctx, hdrs, args = ["-std=gnu99", "-DUSE_DEF=1"])
 generate(ctx, joinpath(@__DIR__, "gen"), "cudatex")
+
+
+
+
+
+using CBinding
 
 CBinding.@ctypedef size_t Base.Csize_t
 CBinding.@ctypedef CUmipmappedArray_st Base.Cvoid

@@ -114,9 +114,9 @@ version = "0.9.6"
 
 [[Compat]]
 deps = ["Base64", "Dates", "DelimitedFiles", "Distributed", "InteractiveUtils", "LibGit2", "Libdl", "LinearAlgebra", "Markdown", "Mmap", "Pkg", "Printf", "REPL", "Random", "Serialization", "SharedArrays", "Sockets", "SparseArrays", "Statistics", "Test", "UUIDs", "Unicode"]
-git-tree-sha1 = "84aa74986c5b9b898b0d1acaf3258741ee64754f"
+git-tree-sha1 = "ed2c4abadf84c53d9e58510b5fc48912c2336fbb"
 uuid = "34da2185-b29b-5c13-b0c7-acf172513d20"
-version = "2.1.0"
+version = "2.2.0"
 
 [[ComputationalResources]]
 deps = ["Test"]
@@ -147,6 +147,11 @@ deps = ["AbstractFFTs", "Adapt", "CUDAapi", "CUDAdrv", "CUDAnative", "GPUArrays"
 git-tree-sha1 = "46b48742a84bb839e74215b7e468a4a1c6ba30f9"
 uuid = "3a865a2d-5b23-5a0f-bc46-62713ec82fae"
 version = "1.2.1"
+
+[[CuTextures]]
+path = "/home/nvidia/cuda_julia_experiments/CuTextures"
+uuid = "44f18228-da5a-4172-9251-368da0040bb3"
+version = "0.1.0"
 
 [[CustomUnitRanges]]
 deps = ["Test"]
