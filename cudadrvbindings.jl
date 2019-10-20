@@ -19,6 +19,7 @@ defs = [
     "CUDA_RESOURCE_VIEW_DESC",
     "CU_TRSF_",
     "CUDA_ARRAY_DESCRIPTOR",
+    "CUDA_ARRAY3D_DESCRIPTOR",
 ]
 
 ctx = ConverterContext() do decl

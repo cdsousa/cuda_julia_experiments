@@ -54,7 +54,6 @@ tex_desc.flags = @CU_TRSF_NORMALIZED_COORDINATES
 tex_desc.borderColor = [0.12f0, 0.34f0, 0.56f0, 0.78f0]
 
 
-
 # cuTexObjectCreate ( CUtexObject* pTexObject, const CUDA_RESOURCE_DESC* pResDesc, const CUDA_TEXTURE_DESC* pTexDesc, const CUDA_RESOURCE_VIEW_DESC* pResViewDesc )
 
 ref_texobj = Ref{CUtexObject}(0)
@@ -62,6 +61,47 @@ ref_texobj = Ref{CUtexObject}(0)
 texobj = ref_texobj[]
 
 # @apicall(:cuTexObjectDestroy, (CUtexObject,), texobj)
+
+#####################
+
+allocateArray = CUDA_ARRAY3D_DESCRIPTOR()
+allocateArray.Width = Csize_t(w)
+allocateArray.Height = Csize_t(h)
+allocateArray.Depth = Csize_t(0)
+allocateArray.Format = CU_AD_FORMAT_FLOAT
+allocateArray.NumChannels = UInt32(1)
+allocateArray.Flags = 0
+
+
+ref_cuarr = Ref{CUarray}(0)
+@apicall(:cuArray3DCreate, (Ptr{CUarray}, Ptr{CUDA_ARRAY3D_DESCRIPTOR}), ref_cuarr, Ref(allocateArray))
+cuarr = ref_cuarr[]
+
+###################
+
+resrc_desc2 = CUDA_RESOURCE_DESC()
+tex_desc2 = CUDA_TEXTURE_DESC()
+resrc_view_desc2 = C_NULL#CUDA_RESOURCE_VIEW_DESC()
+
+resrc_desc2.resType = CU_RESOURCE_TYPE_ARRAY
+resrc_desc2.res.array.hArray = cuarr
+resrc_desc2.flags = 0x0
+
+tex_desc2.addressMode = fill(CUaddress_mode_enum(CU_TR_ADDRESS_MODE_BORDER), 3)
+tex_desc2.filterMode = CU_TR_FILTER_MODE_LINEAR
+tex_desc2.flags = @CU_TRSF_NORMALIZED_COORDINATES
+# tex_desc2.maxAnisotropy = 1
+# tex_desc2.mipmapFilterMode = CU_TR_FILTER_MODE_LINEAR
+# tex_desc2.mipmapLevelBias = 0
+# tex_desc2.minMipmapLevelClamp = 0
+# tex_desc2.maxMipmapLevelClamp = 0
+tex_desc2.borderColor = [0.12f0, 0.34f0, 0.56f0, 0.78f0]
+
+ref_texobj2 = Ref{CUtexObject}(0)
+@apicall(:cuTexObjectCreate, (Ptr{CUtexObject}, Ptr{CUDA_RESOURCE_DESC}, Ptr{CUDA_TEXTURE_DESC}, Ptr{CUDA_RESOURCE_VIEW_DESC}), ref_texobj2, Ref(resrc_desc2), Ref(tex_desc2), C_NULL)
+texobj2 = ref_texobj2[]
+
+# @apicall(:cuTexObjectDestroy, (CUtexObject,), texobj2)
 
 
 
